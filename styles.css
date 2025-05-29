@@ -1,0 +1,73 @@
+:root {
+  --bg-color: #ffffff;
+  --card-color: #eeeeee;
+  --card-back: #cccccc;
+  --text-color: #000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Center vertically */
+  min-height: 100vh;
+  padding: 20px;
+  transition: background 0.5s, color 0.5s;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.stats {
+  display: flex;
+  gap: 20px;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  max-width: 400px;
+  width: 100%;
+  gap: 10px;
+  justify-content: center; /* Center grid horizontally */
+}
+.card {
+  background-color: var(--card-back);
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  color: transparent;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: transform 0.4s, background 0.4s;
+  user-select: none;
+}
+
+.card.flipped {
+  background-color: var(--card-color);
+  color: var(--text-color);
+  transform: rotateY(180deg);
+}
+
+@media (min-width: 600px) {
+  .card {
+    height: 100px;
+    font-size: 2.5rem;
+  }
+
+  .game-board {
+    grid-template-columns: repeat(4, 100px);
+    max-width: none;
+  }
+}
