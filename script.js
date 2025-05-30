@@ -1,3 +1,17 @@
+// DOM Elements
+const board = document.getElementById('gameBoard');
+const moveCounter = document.getElementById('moveCount');
+const timerDisplay = document.getElementById('timer');
+
+// Game state variables
+let cards = [];
+let firstCard = null;
+let lockBoard = false;
+let moves = 0;
+let matched = 0;
+let startTime = null;
+let timerInterval = null;
+
 // Theme based on month
 function applySeasonTheme() {
   const month = new Date().getMonth();
@@ -260,19 +274,21 @@ function flipCard(card) {
     }
 }
 
-// Initialize the game
-initGame();
+// Initialize the game when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    initGame();
+});
 
 function updateTimer() {
-  const seconds = Math.floor((Date.now() - startTime) / 1000);
-  timerDisplay.textContent = `${seconds}s`;
+    const seconds = Math.floor((Date.now() - startTime) / 1000);
+    timerDisplay.textContent = `${seconds}s`;
 }
 
 function startTimer() {
-  startTime = Date.now();
-  timerInterval = setInterval(updateTimer, 1000);
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimer, 1000);
 }
 
 function stopTimer() {
-  clearInterval(timerInterval);
+    clearInterval(timerInterval);
 }
