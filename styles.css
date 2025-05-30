@@ -77,25 +77,28 @@ h1 {
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-  max-width: 400px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  max-width: 100%;
   width: 100%;
-  gap: 10px;
-  justify-content: center; /* Center grid horizontally */
+  padding: 10px;
+  box-sizing: border-box;
 }
+
 .card {
+  aspect-ratio: 1;
   background-color: var(--card-back);
-  height: 70px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: transparent;
   cursor: pointer;
   border-radius: 8px;
   transition: transform var(--flip-speed), background var(--flip-speed);
   user-select: none;
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .card.flipped {
@@ -146,13 +149,13 @@ h1 {
 }
 
 @media (min-width: 600px) {
-  .card {
-    height: 100px;
-    font-size: 2.5rem;
-  }
-
   .game-board {
     grid-template-columns: repeat(4, 100px);
-    max-width: none;
+    gap: 10px;
+    max-width: 440px;
+  }
+
+  .card {
+    font-size: 2rem;
   }
 }
