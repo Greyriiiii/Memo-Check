@@ -157,8 +157,8 @@ function optimizeRewards() {
         playerStats.engagementScore = Math.min(100, playerStats.engagementScore + 20);
     }
     
-    // Adjust reward frequency based on engagement
-    const rewardInterval = Math.max(2, 5 - (playerStats.engagementScore / 20));
+    // Adjust reward frequency based on engagement and round to whole hours
+    const rewardInterval = Math.floor(Math.max(2, 5 - (playerStats.engagementScore / 20)));
     return rewardInterval;
 }
 
