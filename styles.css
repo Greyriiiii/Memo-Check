@@ -1,8 +1,51 @@
 :root {
+  /* Default colors (day) */
   --bg-color: #ffffff;
   --card-color: #eeeeee;
   --card-back: #cccccc;
   --text-color: #000;
+  --flip-speed: 1000ms;
+  --reward-animation-duration: 0.5s;
+}
+
+/* Dawn colors (5am - 8am) */
+@media (prefers-color-scheme: light) {
+  :root[data-time="dawn"] {
+    --bg-color: #ffd3b6;
+    --card-color: #ffefd5;
+    --card-back: #ffb6a3;
+    --text-color: #4a4a4a;
+  }
+}
+
+/* Day colors (8am - 5pm) */
+@media (prefers-color-scheme: light) {
+  :root[data-time="day"] {
+    --bg-color: #ffffff;
+    --card-color: #eeeeee;
+    --card-back: #cccccc;
+    --text-color: #000;
+  }
+}
+
+/* Sunset colors (5pm - 8pm) */
+@media (prefers-color-scheme: light) {
+  :root[data-time="sunset"] {
+    --bg-color: #ffb6a3;
+    --card-color: #ffd3b6;
+    --card-back: #ff8c7f;
+    --text-color: #4a4a4a;
+  }
+}
+
+/* Night colors (8pm - 5am) */
+@media (prefers-color-scheme: light) {
+  :root[data-time="night"] {
+    --bg-color: #2c3e50;
+    --card-color: #34495e;
+    --card-back: #1a252f;
+    --text-color: #ecf0f1;
+  }
 }
 
 body {
@@ -50,14 +93,56 @@ h1 {
   color: transparent;
   cursor: pointer;
   border-radius: 8px;
-  transition: transform 0.4s, background 0.4s;
+  transition: transform var(--flip-speed), background var(--flip-speed);
   user-select: none;
+  position: relative;
 }
 
 .card.flipped {
   background-color: var(--card-color);
   color: var(--text-color);
   transform: rotateY(180deg);
+}
+
+/* Reward animation */
+@keyframes reward {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.card.reward {
+  animation: reward var(--reward-animation-duration) ease-in-out;
+}
+
+/* Difficulty indicator */
+.difficulty-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Engagement score display */
+.engagement-score {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+/* Time of day indicator */
+.time-indicator {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
 
 @media (min-width: 600px) {
